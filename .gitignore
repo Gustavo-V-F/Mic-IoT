@@ -1,7 +1,7 @@
 # Arquivos ignorados
 
 # Pastas ignoradas
-.vscode\
+.vscode/
 
 # Tipos de arquivos ignorados
 *.o
