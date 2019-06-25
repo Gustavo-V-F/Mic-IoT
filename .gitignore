@@ -6,3 +6,5 @@
 # Tipos de arquivos ignorados
 *.o
 *.d
+*.elf
+*.hex
