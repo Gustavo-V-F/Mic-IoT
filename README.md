@@ -9,3 +9,5 @@
 # Servidor externo
 - Protocolo de comunicação MQTT
 - Comunicação com dispositivos através do broker
+# Confecção do shield
+- O projeto do shield do Arduino UNO está disponível no repositório https://github.com/xtarke/avrlibs
