@@ -1,0 +1,8 @@
+# Arquivos ignorados
+
+# Pastas ignoradas
+.vscode\
+
+# Tipos de arquivos ignorados
+*.o
+*.d
