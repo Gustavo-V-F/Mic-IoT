@@ -1,4 +1,10 @@
-#include "../lib/timer_setup.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
+
+#include "../lib/avr_timer.h"
+#include "../lib/avr_gpio.h"
+#include "../lib/bits.h"
+#include "../lib/timer0_setup.h"
 
 void timer0_hardware_init()
 {

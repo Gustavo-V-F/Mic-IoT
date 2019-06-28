@@ -42,6 +42,7 @@ typedef struct
 
 typedef struct 
 {
+	uint8_t BUFFER;
 	union
 	{
 		uint8_t EMPTY;
@@ -55,15 +56,9 @@ typedef struct
 			uint8_t SIX:1;
 			uint8_t SEVEN:1;
 			uint8_t EIGHT:1;
-		}EMPTY_BITS;
-	}PCKT_FLAG;
-	
-	union
-	{
-		uint64_t MASK;
-		uint8_t PACKET[8];
-	}BUFFER;
-}PACKET_Type;
+		}EMPTY_BIT;
+	}FRAME_FLAG;
+}FRAME_Type;
 
 void USART_Init(uint16_t bauds);
 FILE * get_usart_stream();

@@ -12,8 +12,10 @@
 #include "../lib/avr_gpio.h"
 #include "../lib/avr_timer.h"
 #include "../lib/lcd.h"
-#include "../lib/timer_setup.h"
+#include "../lib/timer0A_setup.h"
+#include "../lib/timer0B_setup.h"
 #include "../lib/avr_twi_master.h"
 #include "../lib/avr_usart.h"
+#include "../lib/modbus_rtu.h"
 
 #endif

@@ -23,8 +23,6 @@
 #include "../lib/avr_gpio.h"
 #include "../lib/bits.h"
 
-
-
 //Definições para facilitar a troca dos pinos do hardware e facilitar a re-programação
 
 #define NIBBLE_DADOS	0		//0 para via de dados do LCD nos 4 LSBs do PORT empregado (Px0-D4, Px1-D5, Px2-D6, Px3-D7)

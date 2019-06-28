@@ -8,11 +8,12 @@
 
 #include <stdio.h>
 #include <avr/interrupt.h>
-#include "avr_usart.h"
-#include "bits.h"
+
+#include "../lib/avr_usart.h"
+#include "../lib/bits.h"
 
 static uint8_t usart_putchar(char c, FILE *fp);
-static volatile PACKET_Type USART_PCKT;
+static volatile FRAME_Type UART_PCKT;
 
 /* Stream init for printf  */
 FILE usart_str = FDEV_SETUP_STREAM(usart_putchar, NULL, _FDEV_SETUP_WRITE);
@@ -25,8 +26,8 @@ FILE * get_usart_stream()
 
 void USART_Init(uint16_t bauds)
 {
-	FRAME.PCKT_FLAG.EMPTY = 0xFF;
-	FRAME.BUFFER.MASK = 0;
+	UART_PCKT.FRAME_FLAG.EMPTY = 0xFF;
+	UART_PCKT.BUFFER = 0;
 	USART_0->UBRR_H = (uint8_t) (bauds >> 8);
 	USART_0->UBRR_L = bauds;
 
@@ -70,18 +71,7 @@ static uint8_t usart_putchar(char c, FILE *fp)
 
 ISR(USART_RX_vect)
 {
-	static uint8_t frameIndex = 0;
-	static uint8_t pcktIndex = 0;
-
-	USART_PCKT.BUFFER.MASK |= (TST_BIT(USART_0->UDR_, frameIndex) << frameIndex);
-
-	if(frameIndex == 7){
-		USART_PCKT.PCKT_FLAG.EMPTY &= 0 << pcktIndex;
-		frameIndex = 0;
-		pcktIndex++;
-	}
-
-	frameIndex++;
+	UART_PCKT.BUFFER = USART_0->UDR_;
 }
 
 //ISR(USART_TX_vect){
