@@ -71,7 +71,15 @@ static uint8_t usart_putchar(char c, FILE *fp)
 
 ISR(USART_RX_vect)
 {
+	static uint8_t frame_index == 0;
 	UART_PCKT.BUFFER = USART_0->UDR_;
+
+	if(frame_index > 7)
+		frame_index = 0;
+
+	UART_PCKT.FRAME_FLAG.EMPTY &= 0 << frame_index;
+
+	frame_index++;
 }
 
 //ISR(USART_TX_vect){
