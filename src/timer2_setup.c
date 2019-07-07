@@ -8,10 +8,10 @@
 
 void timer2_hardware_init()
 {
-	GPIO_D->DDR = 0xFF;
-
-	/* Prescaler */
-	TIMER_2->TCCRB = SET(CS02) | SET(CS00);
-	/* Overflow enable */
-	TIMER_IRQS->TC2.BITS.TOIE = 1;
+	OCR2A = 208;
+    // CTC
+    TIMER_2->TCCRA = SET(WGM21);
+    // Prescaler = 1
+	TIMER_2->TCCRB = SET(CS21) | SET(CS20);
+    TIMER_IRQS->TC2.BITS.OCIEA = 1;
 }

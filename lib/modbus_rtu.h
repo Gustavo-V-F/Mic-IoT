@@ -1,6 +1,10 @@
 #ifndef _MODBUS_RTU_H
 #define _MODBUS_RTU_H
 
+#define MODBUS_RTU_ADDR 0x15
+#define MODBUS_RTU_CMD_W 0x01
+#define MODBUS_RTU_CMD_R 0x02
+
 typedef struct 
 {
 	uint8_t _ADDR;
@@ -8,23 +12,15 @@ typedef struct
 	uint16_t _REG;
 	uint16_t _DATA; 
 	uint16_t _CRC;
-
-	union
-	{
-		uint8_t FILLED;
-		struct
-		{
-			uint8_t ADDR_F:1;
-			uint8_t CMD_F:1;
-			uint8_t REG_F:2;
-			uint8_t DATA_F:2;
-			uint8_t CRC_F:2;
-		}BYTES;
-	}PACKET_FLAG;
 }PACKET_Type;
 
+void modbus_rtu_init();
+uint16_t modbus_rtu_check();
+void modbus_rtu_read();
+void modbus_rtu_write(uint16_t reg, uint16_t data);
+void modbus_rtu_error(uint8_t error);
+uint16_t get_modbus_rtu_data();
 uint16_t CRC16_2(uint8_t *buf, int len);
-uint8_t modbus_rtu_check();
 uint16_t swap_endian(uint16_t data);
 
 #endif

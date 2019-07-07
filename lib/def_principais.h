@@ -11,7 +11,6 @@
 #include "../lib/bits.h"
 #include "../lib/avr_gpio.h"
 #include "../lib/avr_timer.h"
-#include "../lib/lcd.h"
 #include "../lib/timer0_setup.h"
 #include "../lib/timer2_setup.h"
 #include "../lib/avr_twi_master.h"

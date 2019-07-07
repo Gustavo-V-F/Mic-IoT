@@ -42,28 +42,22 @@ typedef struct
 
 typedef struct 
 {
-	uint8_t BUFFER;
 	union
 	{
-		uint8_t EMPTY;
-		struct
-		{
-			uint8_t ONE:1;
-			uint8_t TWO:1;
-			uint8_t THREE:1;
-			uint8_t FOUR:1;
-			uint8_t FIVE:1;
-			uint8_t SIX:1;
-			uint8_t SEVEN:1;
-			uint8_t EIGHT:1;
-		}EMPTY_BIT;
-	}FRAME_FLAG;
+		uint64_t BUFFER_MASK;
+		uint8_t BUFFER[8];
+	}FRAME;
+	uint8_t BUFFER_SIZE;
 }FRAME_Type;
 
 void USART_Init(uint16_t bauds);
-FILE * get_usart_stream();
-
+void set_usart_buffer_size(uint8_t lenght);
+uint8_t get_usart_buffer_size();
+void read_usart_buffer(uint8_t readIndex);
+void reset_usart_buffer();
+uint8_t get_usart_buffer(uint8_t bufferIndex);
 void USART_tx(uint8_t data);
 uint8_t USART_rx();
+uint8_t usart_check();
 
 #endif

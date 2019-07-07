@@ -12,7 +12,7 @@ INC = lib
 # device parameters
 DEVICE     = atmega328p
 CLOCK      = 16000000UL
-PROGRAMMER = carduino
+PROGRAMMER = arduino
 
 # compilers
 CC      = avr-gcc
