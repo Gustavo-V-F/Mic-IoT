@@ -47,6 +47,7 @@ fsm_t mqf[] = {
 /* Estado atual */
 volatile state_t curr_state = leSensor;
 volatile uint16_t dados = 0;
+uint16_t acelDados[3] = {0}, gyroDados[3] ={0};
 
 int main(){
 
@@ -60,6 +61,8 @@ int main(){
 	teste.erroPacote = 0;
 
 	sei();
+
+	MPU6050_init();
 
 	for(;;){
 		(*mqf[curr_state].func)();
@@ -163,7 +166,7 @@ void f_lePacote(void){
 
 	teste.lePacoteOK = 1;
 	
-	_delay_ms(1000);
+	_delay_ms(30);
 }
 
 void f_enviaPacote(void){
@@ -172,13 +175,12 @@ void f_enviaPacote(void){
 		if(j > 3)
 			j = 0;
 
-		modbus_rtu_write(0x05 + j, dados + j);
+		modbus_rtu_write(0x05 + j, (gyroDados[j]));
 		j++;
 	}
-
 	teste.enviaPacoteOK = 1;
-	
-	_delay_ms(1000);
+	MPU6050_get_raw_data(acelDados, gyroDados);
+	_delay_ms(30);
 }
 
 void f_recebePacote(void){

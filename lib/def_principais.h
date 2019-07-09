@@ -16,5 +16,6 @@
 #include "../lib/avr_twi_master.h"
 #include "../lib/avr_usart.h"
 #include "../lib/modbus_rtu.h"
+#include "../lib/mpu6050.h"
 
 #endif
